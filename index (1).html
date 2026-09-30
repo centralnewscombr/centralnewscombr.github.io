@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Notícia Agora</title>
+
+<style>
+
+:root{
+  --vermelho:#c90000;
+  --vermelho2:#a80000;
+  --fundo:#f4f5f7;
+  --card:#fff;
+  --texto:#202124;
+  --texto2:#666;
+  --borda:#ddd;
+}
+
+body.dark{
+  --fundo:#101214;
+  --card:#1c1f22;
+  --texto:#f5f5f5;
+  --texto2:#bbb;
+  --borda:#35393d;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:var(--fundo);
+  color:var(--texto);
+  font-family:Arial,sans-serif;
+}
+
+/* TOPO */
+
+header{
+  background:var(--vermelho);
+  color:white;
+  padding:18px 15px;
+}
+
+.topo{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.topo-direita{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.data{
+  font-size:14px;
+}
+
+.tema{
+  border:0;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  font-size:22px;
+  background:#ffffff20;
+  cursor:pointer;
+}
+
+/* MENU */
+
+nav{
+  background:var(--vermelho2);
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+.menu{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+}
+
+.menu button{
+  flex:none;
+  border:0;
+  background:transparent;
+  color:white;
+  font-weight:bold;
+  padding:15px 18px;
+  font-size:15px;
+}
+
+/* PRINCIPAL */
+
+main{
+  max-width:1000px;
+  margin:auto;
+  padding:18px;
+}
+
+/* BUSCA */
+
+.busca{
+  display:flex;
+  margin:12px 0;
+}
+
+.busca input{
+  flex:1;
+  min-width:0;
+  padding:14px;
+  font-size:16px;
+  border:1px solid var(--borda);
+  background:var(--card);
+  color:var(--texto);
+  border-radius:10px 0 0 10px;
+}
+
+.busca button{
+  width:70px;
+  border:0;
+  background:var(--vermelho);
+  color:white;
+  font-size:20px;
+  border-radius:0 10px 10px 0;
+}
+
+/* ATUALIZAR */
+
+.atualizar{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:10px;
+  background:#202124;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  margin:10px 0 22px;
+}
+
+/* TÍTULO */
+
+.titulo-area{
+  margin:20px 0 15px;
+}
+
+.titulo-area h2{
+  border-left:6px solid var(--vermelho);
+  padding-left:12px;
+  font-size:28px;
+}
+
+.atualizado{
+  color:var(--texto2);
+  font-size:13px;
+  margin-top:8px;
+}
+
+/* DESTAQUE */
+
+.destaque{
+  display:none;
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background:#222;
+  min-height:300px;
+  margin-bottom:25px;
+}
+
+.destaque img{
+  width:100%;
+  height:320px;
+  display:block;
+  object-fit:cover;
+  opacity:.62;
+}
+
+.destaque-sem-imagem{
+  height:320px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:90px;
+}
+
+.destaque-info{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:25px;
+  color:white;
+  background:linear-gradient(transparent,rgba(0,0,0,.95));
+}
+
+.destaque-info h1{
+  font-size:26px;
+  line-height:1.25;
+  margin:7px 0 13px;
+}
+
+.destaque-info a{
+  display:inline-block;
+  padding:11px 16px;
+  background:var(--vermelho);
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* NOTÍCIAS */
+
+.noticias{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:17px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--borda);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.card-img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+
+.sem-imagem{
+  height:210px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#242424;
+  font-size:55px;
+}
+
+.conteudo{
+  padding:17px;
+}
+
+.fonte{
+  font-size:12px;
+  color:var(--vermelho);
+  font-weight:bold;
+}
+
+.card h2{
+  font-size:20px;
+  margin:8px 0;
+  line-height:1.3;
+}
+
+.horario{
+  color:var(--texto2);
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.resumo{
+  color:var(--texto2);
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:15px;
+}
+
+.botoes{
+  display:grid;
+  grid-template-columns:1fr 55px;
+  gap:8px;
+}
+
+.ler{
+  background:var(--vermelho);
+  color:white;
+  text-align:center;
+  padding:12px 6px;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.compartilhar{
+  border:0;
+  border-radius:8px;
+  font-size:20px;
+}
+
+/* CARREGAMENTO */
+
+.status{
+  grid-column:1/-1;
+  background:var(--card);
+  border:1px solid var(--borda);
+  border-radius:15px;
+  padding:45px 20px;
+  text-align:center;
+  line-height:1.6;
+}
+
+.loader{
+  width:45px;
+  height:45px;
+  margin:0 auto 20px;
+  border:5px solid #ddd;
+  border-top-color:var(--vermelho);
+  border-radius:50%;
+  animation:girar .8s linear infinite;
+}
+
+@keyframes girar{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* PUBLICIDADE */
+
+.publicidade{
+  margin-top:30px;
+  min-height:110px;
+  border:2px dashed var(--borda);
+  border-radius:15px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--texto2);
+  padding:20px;
+}
+
+.publicidade strong{
+  font-size:18px;
+}
+
+/* RODAPÉ */
+
+footer{
+  margin-top:40px;
+  background:#202124;
+  color:#aaa;
+  padding:35px 20px;
+  text-align:center;
+  line-height:1.6;
+}
+
+footer strong{
+  color:white;
+  font-size:20px;
+}
+
+@media(max-width:650px){
+
+  .noticias{
+    grid-template-columns:1fr;
+  }
+
+  .data{
+    display:none;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .titulo-area h2{
+    font-size:26px;
+  }
+
+  .destaque-info h1{
+    font-size:21px;
+  }
+
+  .card-img,
+  .sem-imagem{
+    height:220px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="topo">
+
+<div class="logo">
+📰 NOTÍCIA AGORA
+</div>
+
+<div class="topo-direita">
+
+<span class="data" id="data"></span>
+
+<button
+class="tema"
+id="tema"
+onclick="alternarTema()">
+🌙
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<nav>
+
+<div class="menu">
+
+<button onclick="categoria('ultimas')">
+Últimas
+</button>
+
+<button onclick="categoria('brasil')">
+Brasil
+</button>
+
+<button onclick="categoria('politica')">
+Política
+</button>
+
+<button onclick="categoria('economia')">
+Economia
+</button>
+
+<button onclick="categoria('tecnologia')">
+Tecnologia
+</button>
+
+<button onclick="categoria('esportes')">
+Esportes
+</button>
+
+<button onclick="categoria('saude')">
+Saúde
+</button>
+
+<button onclick="categoria('educacao')">
+Educação
+</button>
+
+<button onclick="categoria('mundo')">
+Mundo
+</button>
+
+<button onclick="categoria('entretenimento')">
+Entretenimento
+</button>
+
+</div>
+
+</nav>
+
+
+<main>
+
+<div class="busca">
+
+<input
+id="busca"
+placeholder="Pesquisar notícias...">
+
+<button onclick="pesquisar()">
+🔍
+</button>
+
+</div>
+
+
+<button
+class="atualizar"
+onclick="carregarNoticias()">
+
+🔄 ATUALIZAR NOTÍCIAS
+
+</button>
+
+
+<section
+id="destaque"
+class="destaque">
+</section>
+
+
+<div class="titulo-area">
+
+<h2 id="tituloCategoria">
+Últimas notícias
+</h2>
+
+<div
+id="atualizado"
+class="atualizado">
+</div>
+
+</div>
+
+
+<section
+id="noticias"
+class="noticias">
+
+<div class="status">
+
+<div class="loader"></div>
+
+Carregando notícias...
+
+</div>
+
+</section>
+
+
+<div class="publicidade">
+
+<strong>
+📢 ESPAÇO PUBLICITÁRIO
+</strong>
+
+<span>
+Área preparada para anúncios futuros
+</span>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<strong>
+📰 NOTÍCIA AGORA
+</strong>
+
+<br><br>
+
+Notícias carregadas de fontes externas.
+
+<br>
+
+As matérias pertencem às respectivas fontes.
+
+</footer>
+
+
+<script>
+
+/* =========================
+   FEEDS
+========================= */
+
+const feeds = {
+
+ultimas:
+"https://g1.globo.com/rss/g1/",
+
+brasil:
+"https://news.google.com/rss/search?q=Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+politica:
+"https://g1.globo.com/rss/g1/politica/",
+
+economia:
+"https://g1.globo.com/rss/g1/economia/",
+
+tecnologia:
+"https://news.google.com/rss/search?q=tecnologia+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+esportes:
+"https://news.google.com/rss/search?q=esportes+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+saude:
+"https://news.google.com/rss/search?q=saude+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+educacao:
+"https://news.google.com/rss/search?q=educacao+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+mundo:
+"https://news.google.com/rss/search?q=noticias+internacionais&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+
+entretenimento:
+"https://news.google.com/rss/search?q=entretenimento+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419"
+
+};
+
+
+const nomes = {
+
+ultimas:"Últimas notícias",
+
+brasil:"Brasil",
+
+politica:"Política",
+
+economia:"Economia",
+
+tecnologia:"Tecnologia",
+
+esportes:"Esportes",
+
+saude:"Saúde",
+
+educacao:"Educação",
+
+mundo:"Mundo",
+
+entretenimento:"Entretenimento"
+
+};
+
+
+let categoriaAtual =
+"ultimas";
+
+
+let noticiasCarregadas =
+[];
+
+
+let numeroPedido =
+0;
+
+
+/* =========================
+   TROCAR CATEGORIA
+========================= */
+
+function categoria(nome){
+
+categoriaAtual =
+nome;
+
+
+document
+.getElementById(
+"tituloCategoria"
+)
+.innerText =
+nomes[nome];
+
+
+document
+.getElementById(
+"busca"
+)
+.value =
+"";
+
+
+carregarNoticias();
+
+}
+
+
+/* =========================
+   JSONP
+========================= */
+
+function carregarNoticias(){
+
+numeroPedido++;
+
+const pedido =
+numeroPedido;
+
+
+const area =
+document.getElementById(
+"noticias"
+);
+
+
+document
+.getElementById(
+"destaque"
+)
+.style.display =
+"none";
+
+
+area.innerHTML = `
+
+<div class="status">
+
+<div class="loader"></div>
+
+Buscando notícias atualizadas...
+
+</div>
+
+`;
+
+
+const callback =
+
+"noticiaCallback" +
+
+Date.now() +
+
+Math.floor(
+Math.random()*10000
+);
+
+
+const feed =
+feeds[categoriaAtual];
+
+
+const script =
+document.createElement(
+"script"
+);
+
+
+let terminou =
+false;
+
+
+/* CALLBACK */
+
+window[callback] =
+function(dados){
+
+if(
+terminou ||
+pedido !== numeroPedido
+){
+return;
+}
+
+
+terminou =
+true;
+
+
+clearTimeout(
+tempo
+);
+
+
+limpar();
+
+
+if(
+!dados ||
+dados.status !== "ok" ||
+!Array.isArray(
+dados.items
+)
+){
+
+mostrarErro();
+
+return;
+
+}
+
+
+noticiasCarregadas =
+
+dados.items.map(
+item=>{
+
+item._fonte =
+
+item.author ||
+
+(
+dados.feed &&
+dados.feed.title
+)
+
+||
+
+"Fonte externa";
+
+return item;
+
+}
+);
+
+
+mostrarDestaque(
+noticiasCarregadas[0]
+);
+
+
+mostrarNoticias(
+noticiasCarregadas
+);
+
+
+document
+.getElementById(
+"atualizado"
+)
+.innerText =
+
+"Atualizado às " +
+
+new Date()
+.toLocaleTimeString(
+"pt-BR",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+};
+
+
+/* LIMPAR SCRIPT */
+
+function limpar(){
+
+try{
+
+delete window[
+callback
+];
+
+}
+catch(e){}
+
+
+if(
+script.parentNode
+){
+
+script.parentNode
+.removeChild(
+script
+);
+
+}
+
+}
+
+
+/* ERRO DE REDE */
+
+script.onerror =
+function(){
+
+if(terminou){
+return;
+}
+
+
+terminou =
+true;
+
+
+clearTimeout(
+tempo
+);
+
+
+limpar();
+
+
+mostrarErro();
+
+};
+
+
+/* TEMPO MÁXIMO */
+
+const tempo =
+setTimeout(
+function(){
+
+if(terminou){
+return;
+}
+
+
+terminou =
+true;
+
+
+limpar();
+
+
+mostrarErro();
+
+},
+15000
+);
+
+
+/* ENDEREÇO */
+
+script.src =
+
+"https://api.rss2json.com/v1/api.json"
+
++
+
+"?callback=" +
+callback
+
++
+
+"&rss_url=" +
+
+encodeURIComponent(
+feed
+);
+
+
+document.body
+.appendChild(
+script
+);
+
+}
+
+
+/* =========================
+   ERRO
+========================= */
+
+function mostrarErro(){
+
+document
+.getElementById(
+"noticias"
+)
+.innerHTML = `
+
+<div class="status">
+
+⚠️ Não foi possível carregar
+as notícias neste navegador.
+
+<br><br>
+
+Toque em
+<strong>ATUALIZAR NOTÍCIAS</strong>
+para tentar novamente.
+
+<br><br>
+
+<small>
+Se estiver usando o Preview do Acode,
+teste também o endereço publicado
+no GitHub Pages.
+</small>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   DESTAQUE
+========================= */
+
+function mostrarDestaque(
+item
+){
+
+if(!item){
+return;
+}
+
+
+const area =
+document.getElementById(
+"destaque"
+);
+
+
+const imagem =
+encontrarImagem(
+item
+);
+
+
+const link =
+urlSegura(
+item.link
+);
+
+
+area.innerHTML = `
+
+${
+imagem
+
+?
+
+`
+<img
+src="${imagem}"
+alt=""
+onerror="
+this.style.display='none'
+">
+`
+
+:
+
+`
+<div class="destaque-sem-imagem">
+📰
+</div>
+`
+}
+
+<div class="destaque-info">
+
+<small>
+${escapar(item._fonte)}
+</small>
+
+<h1>
+${escapar(item.title)}
+</h1>
+
+<a
+href="${link}"
+target="_blank"
+rel="noopener noreferrer">
+
+LER DESTAQUE →
+
+</a>
+
+</div>
+
+`;
+
+
+area.style.display =
+"block";
+
+}
+
+
+/* =========================
+   MOSTRAR CARDS
+========================= */
+
+function mostrarNoticias(
+lista
+){
+
+const area =
+document.getElementById(
+"noticias"
+);
+
+
+area.innerHTML =
+"";
+
+
+if(
+lista.length === 0
+){
+
+area.innerHTML = `
+
+<div class="status">
+
+Nenhuma notícia encontrada.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+lista.forEach(
+(item,indice)=>{
+
+
+if(
+indice === 0 &&
+lista === noticiasCarregadas
+){
+
+return;
+
+}
+
+
+const card =
+document.createElement(
+"article"
+);
+
+
+card.className =
+"card";
+
+
+const imagem =
+encontrarImagem(
+item
+);
+
+
+const resumo =
+limparHTML(
+item.description || ""
+)
+.trim()
+.substring(
+0,
+180
+);
+
+
+const link =
+urlSegura(
+item.link
+);
+
+
+card.innerHTML = `
+
+${
+imagem
+
+?
+
+`
+<img
+class="card-img"
+src="${imagem}"
+alt=""
+loading="lazy"
+onerror="
+this.outerHTML=
+'<div class=&quot;sem-imagem&quot;>📰</div>'
+">
+`
+
+:
+
+`
+<div class="sem-imagem">
+📰
+</div>
+`
+}
+
+
+<div class="conteudo">
+
+<span class="fonte">
+
+${escapar(
+item._fonte
+)}
+
+</span>
+
+
+<h2>
+
+${escapar(
+item.title
+)}
+
+</h2>
+
+
+<div class="horario">
+
+${formatarData(
+item.pubDate
+)}
+
+</div>
+
+
+<div class="resumo">
+
+${escapar(
+resumo
+)}
+
+${
+resumo.length >= 180
+? "..."
+: ""
+}
+
+</div>
+
+
+<div class="botoes">
+
+<a
+class="ler"
+href="${link}"
+target="_blank"
+rel="noopener noreferrer">
+
+LER NOTÍCIA ↗
+
+</a>
+
+
+<button
+class="compartilhar"
+onclick='compartilhar(
+${JSON.stringify(
+String(
+item.title || ""
+)
+)},
+${JSON.stringify(
+link
+)}
+)'>
+
+📤
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+
+area.appendChild(
+card
+);
+
+});
+
+}
+
+
+/* =========================
+   PESQUISAR
+========================= */
+
+function pesquisar(){
+
+const termo =
+
+document
+.getElementById(
+"busca"
+)
+.value
+.trim()
+.toLowerCase();
+
+
+if(!termo){
+
+mostrarDestaque(
+noticiasCarregadas[0]
+);
+
+mostrarNoticias(
+noticiasCarregadas
+);
+
+return;
+
+}
+
+
+document
+.getElementById(
+"destaque"
+)
+.style.display =
+"none";
+
+
+const resultado =
+
+noticiasCarregadas
+.filter(
+item=>{
+
+const titulo =
+
+String(
+item.title || ""
+)
+.toLowerCase();
+
+
+const descricao =
+
+limparHTML(
+item.description || ""
+)
+.toLowerCase();
+
+
+return (
+
+titulo.includes(
+termo
+)
+
+||
+
+descricao.includes(
+termo
+)
+
+);
+
+}
+);
+
+
+mostrarNoticias(
+resultado
+);
+
+}
+
+
+document
+.getElementById(
+"busca"
+)
+.addEventListener(
+"input",
+pesquisar
+);
+
+
+/* =========================
+   COMPARTILHAR
+========================= */
+
+async function compartilhar(
+titulo,
+url
+){
+
+if(
+navigator.share
+){
+
+try{
+
+await navigator.share({
+
+title:titulo,
+
+text:titulo,
+
+url:url
+
+});
+
+}
+catch(e){}
+
+}
+
+else{
+
+try{
+
+await navigator
+.clipboard
+.writeText(
+url
+);
+
+alert(
+"✅ Link copiado!"
+);
+
+}
+
+catch(e){
+
+alert(
+"Não foi possível compartilhar."
+);
+
+}
+
+}
+
+}
+
+
+/* =========================
+   IMAGEM
+========================= */
+
+function encontrarImagem(
+item
+){
+
+let imagem =
+"";
+
+
+if(
+item.thumbnail
+){
+
+imagem =
+item.thumbnail;
+
+}
+
+else if(
+item.enclosure &&
+item.enclosure.link
+){
+
+imagem =
+item.enclosure.link;
+
+}
+
+else{
+
+const html =
+
+item.content ||
+
+item.description ||
+
+"";
+
+
+const encontrou =
+
+html.match(
+/<img[^>]+src=["']([^"']+)["']/i
+);
+
+
+if(encontrou){
+
+imagem =
+encontrou[1];
+
+}
+
+}
+
+
+if(
+!/^https?:\/\//i
+.test(imagem)
+){
+
+return "";
+
+}
+
+
+return escaparAtributo(
+imagem
+);
+
+}
+
+
+/* =========================
+   LIMPAR HTML
+========================= */
+
+function limparHTML(
+texto
+){
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.innerHTML =
+texto;
+
+
+return (
+
+div.textContent ||
+
+div.innerText ||
+
+""
+
+);
+
+}
+
+
+/* =========================
+   ESCAPAR
+========================= */
+
+function escapar(
+texto
+){
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.textContent =
+texto || "";
+
+
+return div.innerHTML;
+
+}
+
+
+function escaparAtributo(
+texto
+){
+
+return String(
+texto || ""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+);
+
+}
+
+
+/* =========================
+   LINK SEGURO
+========================= */
+
+function urlSegura(
+url
+){
+
+try{
+
+const destino =
+new URL(url);
+
+
+if(
+destino.protocol !== "https:"
+&&
+destino.protocol !== "http:"
+){
+
+return "#";
+
+}
+
+
+return escaparAtributo(
+destino.href
+);
+
+}
+
+catch(e){
+
+return "#";
+
+}
+
+}
+
+
+/* =========================
+   DATA DA NOTÍCIA
+========================= */
+
+function formatarData(
+data
+){
+
+if(!data){
+return "";
+}
+
+
+let valor =
+data;
+
+
+if(
+/^\d{4}-\d{2}-\d{2} /
+.test(valor)
+){
+
+valor =
+valor.replace(
+" ",
+"T"
+);
+
+}
+
+
+const d =
+new Date(
+valor
+);
+
+
+if(
+isNaN(
+d.getTime()
+)
+){
+
+return data;
+
+}
+
+
+return d
+.toLocaleString(
+"pt-BR",
+{
+
+day:"2-digit",
+
+month:"2-digit",
+
+year:"numeric",
+
+hour:"2-digit",
+
+minute:"2-digit"
+
+}
+);
+
+}
+
+
+/* =========================
+   TEMA
+========================= */
+
+function alternarTema(){
+
+document.body
+.classList
+.toggle(
+"dark"
+);
+
+
+const escuro =
+
+document.body
+.classList
+.contains(
+"dark"
+);
+
+
+localStorage
+.setItem(
+"temaNoticias",
+escuro
+? "dark"
+: "light"
+);
+
+
+document
+.getElementById(
+"tema"
+)
+.innerText =
+
+escuro
+
+? "☀️"
+
+: "🌙";
+
+}
+
+
+if(
+localStorage
+.getItem(
+"temaNoticias"
+)
+===
+"dark"
+){
+
+document.body
+.classList
+.add(
+"dark"
+);
+
+
+document
+.getElementById(
+"tema"
+)
+.innerText =
+"☀️";
+
+}
+
+
+/* =========================
+   DATA NO TOPO
+========================= */
+
+document
+.getElementById(
+"data"
+)
+.innerText =
+
+new Date()
+.toLocaleDateString(
+"pt-BR"
+);
+
+
+/* =========================
+   INICIAR
+========================= */
+
+carregarNoticias();
+
+</script>
+
+</body>
+</html>
